@@ -40,7 +40,6 @@ or creates a new account in API service.
 
 It handles requests from Learner plugin. All request data are in JSON form. Here `/w` stands for words. 
 
-    GET  /w - gets the full list of collected words no matter if the are learned or not
-    GET  /w/unfamiliar - gets the list of not yet learned words
-    POST /w/<some word> - saves a word info provided in the request body
-    PUT  /w/<some word>/learned - marks a word as learned 
+    GET    /w - - gets the list of words
+    POST   /w/<some word> - add the word info provided in the request body
+    DELETE /w/<some word> - remove the word 
