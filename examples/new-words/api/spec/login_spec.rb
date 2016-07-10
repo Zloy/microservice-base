@@ -1,7 +1,7 @@
 require File.expand_path '../spec_helper.rb', __FILE__
 
 describe 'Sinatra authentication subsystem' do
-  it 'sets user_id and returns success' do
+  it '/login sets user_id and returns success' do
     body = 'right auth info'
     expect(User).to receive(:authenticate).with(body).and_return(User.new)
     user_id = 1234
@@ -21,6 +21,15 @@ describe 'Sinatra authentication subsystem' do
     post '/login', body
 
     expect(last_response.status).to eq(401)
+    expect(last_response.body).to be_empty
+    expect(last_request.session['user_id']).to be_nil
+  end
+
+  it '/logout clears user_id' do
+    user_id = 1234
+    get '/logout', '', 'rack.session' => { user_id: user_id }
+
+    expect(last_response.status).to eq(200)
     expect(last_response.body).to be_empty
     expect(last_request.session['user_id']).to be_nil
   end

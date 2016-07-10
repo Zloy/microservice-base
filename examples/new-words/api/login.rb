@@ -32,6 +32,8 @@ end
 
 get '/logout' do
   session[:user_id] = nil
+  status 200
+  body ''
 end
 
 get '/whoami' do
