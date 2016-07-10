@@ -46,6 +46,8 @@ GEM
     rack (1.6.4)
     rack-protection (1.5.3)
       rack
+    rack-test (0.6.3)
+      rack (>= 1.0)
     rainbow (2.1.0)
     rb-fsevent (0.9.6)
     rb-inotify (0.9.5)
@@ -86,6 +88,7 @@ PLATFORMS
 DEPENDENCIES
   debugger
   guard-rspec
+  rack-test
   rspec (~> 3)
   rubocop (~> 0.30)
   sinatra (~> 1)
