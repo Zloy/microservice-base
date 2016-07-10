@@ -6,9 +6,7 @@ use Rack::Session::Cookie, key: 'rack.session',
 
 register do
   def auth(type)
-    condition do
-      redirect '/login' unless send("#{type}?")
-    end
+    condition { halt 401 unless send("#{type}?") }
   end
 end
 
@@ -36,6 +34,6 @@ get '/logout' do
   session[:user_id] = nil
 end
 
-get '/whoami', auth: :user do
+get '/whoami' do
   @user && @user.name || 'anonymous'
 end
