@@ -1,0 +1,75 @@
+# This will extend the default configuration defined in:
+# https://github.com/brigade/overcommit/blob/master/config/default.yml
+#
+# For a complete list of hooks, see:
+# https://github.com/brigade/overcommit/tree/master/lib/overcommit/hook
+#
+# For a complete list of options that you can use to customize hooks, see:
+# https://github.com/brigade/overcommit#configuration
+
+CommitMsg:
+  TrailingPeriod:
+    enabled: true
+    on_warn: fail # Treat all warnings as failures
+  HardTabs:
+    enabled: true
+    on_warn: fail # Treat all warnings as failures
+  TrailingWhitespace:
+    enabled: true
+    on_warn: fail # Treat all warnings as failures
+
+PrePush:
+  RSpec:
+    command: bin/vagrant_rspec
+    enabled: false
+    on_warn: fail # Treat all warnings as failures
+
+PreCommit:
+  HardTabs:
+    enabled: true
+    on_warn: fail # Treat all warnings as failures
+  AuthorName:
+    enabled: false
+    on_warn: fail # Treat all warnings as failures
+  CoffeeLint:
+    enabled: false
+    on_warn: fail # Treat all warnings as failures
+  CssLint:
+    enabled: true
+    on_warn: fail # Treat all warnings as failures
+  HamlLint:
+    enabled: false
+    on_warn: fail # Treat all warnings as failures
+  JsHint:
+    enabled: false
+    on_warn: fail # Treat all warnings as failures
+  JsLint:
+    enabled: false
+    on_warn: fail # Treat all warnings as failures
+  JsonSyntax:
+    enabled: true
+    on_warn: fail # Treat all warnings as failures
+  RailsSchemaUpToDate:
+    enabled: true
+    on_warn: fail # Treat all warnings as failures
+  Reek:
+    enabled: false
+    on_warn: fail # Treat all warnings as failures
+  RuboCop:
+    enabled: true
+    on_warn: fail # Treat all warnings as failures
+  RubyLint:
+    enabled: false
+    on_warn: fail # Treat all warnings as failures
+  TrailingWhitespace:
+    enabled: true
+    on_warn: fail # Treat all warnings as failures
+  TravisLint:
+    enabled: true
+    on_warn: fail # Treat all warnings as failures
+  W3cCss:
+    enabled: true
+    on_warn: fail # Treat all warnings as failures
+  YamlSyntax:
+    enabled: true
+    on_warn: fail # Treat all warnings as failures

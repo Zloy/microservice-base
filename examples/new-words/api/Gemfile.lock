@@ -2,6 +2,8 @@ GEM
   remote: https://rubygems.org/
   specs:
     ast (2.3.0)
+    childprocess (0.5.6)
+      ffi (~> 1.0, >= 1.0.11)
     coderay (1.1.0)
     columnize (0.9.0)
     debugger (1.6.8)
@@ -27,6 +29,7 @@ GEM
       guard (~> 2.1)
       guard-compat (~> 1.1)
       rspec (>= 2.99.0, < 4.0)
+    iniparse (1.4.1)
     listen (3.0.3)
       rb-fsevent (>= 0.9.3)
       rb-inotify (>= 0.9)
@@ -36,6 +39,9 @@ GEM
     notiffany (0.0.8)
       nenv (~> 0.1)
       shellany (~> 0.0)
+    overcommit (0.25.0)
+      childprocess (~> 0.5.6)
+      iniparse (~> 1.4)
     parser (2.3.1.2)
       ast (~> 2.2)
     powerpack (0.1.1)
@@ -88,6 +94,7 @@ PLATFORMS
 DEPENDENCIES
   debugger
   guard-rspec
+  overcommit (= 0.25.0)
   rack-test
   rspec (~> 3)
   rubocop (~> 0.30)
