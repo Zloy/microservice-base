@@ -1,0 +1,13 @@
+Rails:
+  Enabled: false
+AllCops:
+  Exclude:
+    - db/schema.rb
+    - db/seeds.rb
+    - db/migrate/*.rb
+    - bin/**/*
+    - vendor/bundle/**/*
+Style/Documentation:
+  Enabled: false
+Metrics/AbcSize:
+  Max: 16
