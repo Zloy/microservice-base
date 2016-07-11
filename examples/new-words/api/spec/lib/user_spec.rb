@@ -15,4 +15,14 @@ describe User do
       expect(user).to be_nil
     end
   end
+
+  it '.get' do
+    user = User.get(1234)
+    expect(user).to be_a_kind_of(User)
+    expect(user.id).to eq(1234)
+    expect(user.name).to eq('Anton')
+
+    user = User.get(123)
+    expect(user).to be_nil
+  end
 end
