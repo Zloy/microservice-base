@@ -18,7 +18,8 @@ describe User do
 
   it '.get' do
     user = User.get(1234)
-    expect(user).to be_a_kind_of(User)
+    expect(user).to respond_to(:id)
+    expect(user).to respond_to(:name)
     expect(user.id).to eq(1234)
     expect(user.name).to eq('Anton')
 
