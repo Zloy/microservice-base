@@ -1,5 +1,3 @@
-require File.expand_path '../spec_helper.rb', __FILE__
-
 describe 'My Sinatra Application' do
   it 'renders status' do
     get '/status'
