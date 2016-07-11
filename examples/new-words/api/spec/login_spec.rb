@@ -1,9 +1,10 @@
 describe 'Sinatra authentication subsystem' do
   it '/login sets user_id and returns success' do
-    body = 'right auth info'
-    expect(User).to receive(:authenticate).with(body).and_return(User.new)
+    user = double('user')
     user_id = 1234
-    expect_any_instance_of(User).to receive(:id).and_return(user_id)
+    allow(user).to receive(:id).and_return(user_id)
+    body = 'right auth info'
+    expect(User).to receive(:authenticate).with(body).and_return(user)
 
     post '/login', body
 
@@ -33,9 +34,10 @@ describe 'Sinatra authentication subsystem' do
   end
 
   it '/whoami returns user name' do
-    expect(User).to receive(:get).and_return(User.new)
+    user = double('user')
     user_name = 'Alice'
-    expect_any_instance_of(User).to receive(:name).and_return(user_name)
+    allow(user).to receive(:name).and_return(user_name)
+    expect(User).to receive(:get).and_return(user)
 
     user_id = 1234
     get '/whoami', {}, 'rack.session' => { user_id: user_id }
