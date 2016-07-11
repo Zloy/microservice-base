@@ -24,16 +24,17 @@ end
 
 post '/login' do
   user = User.authenticate(request.body.read)
-  session[:user_id] = user && user.id
-
-  status(user.nil? ? 401 : 200)
-  body ''
+  if user
+    session[:user_id] = user.id
+    status 200
+  else
+    status 401
+  end
 end
 
 get '/logout' do
   session[:user_id] = nil
   status 200
-  body ''
 end
 
 get '/whoami' do
