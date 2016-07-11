@@ -1,5 +1,6 @@
 require 'rack/test'
 require 'rspec'
+require 'debugger'
 
 ENV['RACK_ENV'] = 'test'
 
