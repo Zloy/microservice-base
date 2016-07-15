@@ -42,4 +42,5 @@ It handles requests from Teacher plugin. All request data are in JSON form. Here
 
     GET    /w - gets the full array of word info
     POST   /w/<a word> - adds the word info provided in the request body
-    DELETE /w/<a word> - removes the word info
+    DELETE /w/<a word> - removes the word info as a mistake
+    PUT    /w/<a word>/learned - removes the word info for learned word
