@@ -24,7 +24,13 @@ When the user has some free time he gets collected words to recall them and lear
 
 ### Put out
 
-When the user feels that he's remebered some word well, he wants that word to get out of recall word list.
+#### As learned
+
+When the user feels that he's remebered some word well, he wants that word to get out of recall word list. In such a case the removal should be considered as the word was leanrned, and thus shuld affect stats.
+
+#### As a mistake
+
+In other hand, the user may select word by mistake. Selected word would be translated and added to the user words automatically. The user may want to remove sudden word without affecting stats.
 
 ### Progress
 
