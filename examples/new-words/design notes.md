@@ -42,7 +42,7 @@ It handles requests from Teacher plugin. All request data are in JSON form. Here
 
 API handles requests for current logged in user. It doesn't expect anonymous requests. All it needs to know about the user is `user_id`
 
-    GET    /w - gets the full array of word info
+    GET    /w - gets the full array of not learned words info
     POST   /w/<a word> - adds the word info provided in the request body
     DELETE /w/<a word> - removes the word info as a mistake
     PUT    /w/<a word>/learned - removes the word info for learned word
