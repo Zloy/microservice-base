@@ -29,6 +29,9 @@ GEM
       guard (~> 2.1)
       guard-compat (~> 1.1)
       rspec (>= 2.99.0, < 4.0)
+    guard-rubocop (1.2.0)
+      guard (~> 2.0)
+      rubocop (~> 0.20)
     iniparse (1.4.1)
     listen (3.0.3)
       rb-fsevent (>= 0.9.3)
@@ -94,6 +97,7 @@ PLATFORMS
 DEPENDENCIES
   debugger
   guard-rspec
+  guard-rubocop (~> 1.2)
   overcommit (= 0.25.0)
   rack-test
   rspec (~> 3)
