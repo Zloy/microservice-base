@@ -1,0 +1,22 @@
+source /home/zhan/.screenrc
+
+screen -t 'htop'  0
+screen -t 'bash'  1
+screen -t 'vim'   2
+screen -t 'guard' 3
+screen -t 'git'   4
+
+select 0
+stuff "echo 'shell commands here'^M"
+
+select 1
+stuff "echo 'shell commands here'^M"
+
+select 2
+stuff "vim^M"
+
+select 3
+stuff "bundle exec guard^M"
+
+select 4
+stuff "gits && eval `ssh-agent -s` && ssh-add ~/.ssh/id_github^M"
