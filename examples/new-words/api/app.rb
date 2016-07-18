@@ -5,3 +5,7 @@ require 'login'
 get '/status' do
   'ok'
 end
+
+get '/w', auth: :user do
+  ''
+end
