@@ -3,6 +3,7 @@ rvm:
   - 2.2
   - 2.1
   - 2.0
+# https://lord.io/blog/2014/travis-multiple-subdirs/
 env:
   - TEST_DIR=examples/new-words/api
 script: cd $TEST_DIR && bundle && rake
