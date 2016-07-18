@@ -7,7 +7,6 @@ group :development, :test do
   gem 'guard-rubocop', '~>1.2'
   gem 'rubocop', '~>0.30', require: false
   gem 'rspec', '~>3'
-  gem 'debugger'
   gem 'rack-test'
   gem 'overcommit', '=0.25.0'
   gem 'rake'
