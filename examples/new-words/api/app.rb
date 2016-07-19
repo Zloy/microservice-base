@@ -8,5 +8,6 @@ end
 
 get '/w', auth: :user do
   content_type 'application/json'
-  ''
+
+  Word.all(session[:user_id]).to_json
 end

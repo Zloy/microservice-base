@@ -1,3 +1,5 @@
+require 'word'
+
 describe 'My Sinatra Application' do
   it '/status renders ok' do
     get '/status'
@@ -23,5 +25,15 @@ describe 'My Sinatra Application' do
     get '/w', {}, 'rack.session' => { user_id: user_id }
 
     expect(last_response.headers['Content-Type']).to eq('application/json')
+  end
+
+  it '/w renders what Word.all(user_id) returns in json form' do
+    user_id = 1234
+    word_data = { key: :val, yet: :another }
+    expect(Word).to receive(:all).with(user_id).and_return(word_data)
+
+    get '/w', {}, 'rack.session' => { user_id: user_id }
+
+    expect(last_response.body).to eq(word_data.to_json)
   end
 end
