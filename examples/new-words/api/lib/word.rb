@@ -6,4 +6,7 @@ class Word
       {}
     end
   end
+
+  def self.insert_or_update(_user_id, _word, _payload)
+  end
 end
