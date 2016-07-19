@@ -7,5 +7,6 @@ get '/status' do
 end
 
 get '/w', auth: :user do
+  content_type 'application/json'
   ''
 end

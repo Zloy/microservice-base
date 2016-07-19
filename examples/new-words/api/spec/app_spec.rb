@@ -17,4 +17,11 @@ describe 'My Sinatra Application' do
 
     expect(last_response.status).to eq(401)
   end
+
+  it '/w renders application/json content type' do
+    user_id = 1234
+    get '/w', {}, 'rack.session' => { user_id: user_id }
+
+    expect(last_response.headers['Content-Type']).to eq('application/json')
+  end
 end
