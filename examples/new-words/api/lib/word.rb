@@ -9,4 +9,7 @@ class Word
 
   def self.insert_or_update(_user_id, _word, _payload)
   end
+
+  def self.learned(_user_id, _word)
+  end
 end

@@ -63,4 +63,20 @@ describe 'My Sinatra Application' do
 
     expect(last_response.body).to eq(word_data.to_json)
   end
+
+  it 'PUT /w/:word/learned renders 404 for anonymous user' do
+    put '/w/hero/learned'
+
+    expect(last_response.status).to eq(401)
+  end
+
+  it 'PUT /w/:word/learned renders 204 and calls Word.learned' do
+    word = 'hero'
+    user_id = 1234
+    expect(Word).to receive(:learned).with(user_id, word)
+
+    put "/w/#{word}/learned", {}, 'rack.session' => { user_id: user_id }
+
+    expect(last_response.status).to eq(204)
+  end
 end

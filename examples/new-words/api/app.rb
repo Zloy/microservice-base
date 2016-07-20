@@ -21,3 +21,10 @@ post '/w/:word', auth: :user do
 
   Word.insert_or_update(session[:user_id], params[:word], payload).to_json
 end
+
+put '/w/:word/learned', auth: :user do
+  status 204
+  body nil
+
+  Word.learned(session[:user_id], params[:word])
+end
