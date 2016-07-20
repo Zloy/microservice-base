@@ -28,3 +28,10 @@ put '/w/:word/learned', auth: :user do
 
   Word.learned(session[:user_id], params[:word])
 end
+
+delete '/w/:word', auth: :user do
+  status 204
+  body nil
+
+  Word.delete(session[:user_id], params[:word])
+end

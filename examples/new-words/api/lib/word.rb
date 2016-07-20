@@ -12,4 +12,7 @@ class Word
 
   def self.learned(_user_id, _word)
   end
+
+  def self.delete(_user_id, _word)
+  end
 end

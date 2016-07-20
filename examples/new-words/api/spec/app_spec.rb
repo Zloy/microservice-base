@@ -78,5 +78,24 @@ describe 'My Sinatra Application' do
     put "/w/#{word}/learned", {}, 'rack.session' => { user_id: user_id }
 
     expect(last_response.status).to eq(204)
+    expect(last_response.body).to be_empty
+  end
+
+  it 'DELETE /w/:word renders 404 for anonymous user' do
+    delete '/w/hero'
+
+    expect(last_response.status).to eq(401)
+    expect(last_response.body).to be_empty
+  end
+
+  it 'DELETE /w/:word renders 204 and calls Word.learned' do
+    word = 'hero'
+    user_id = 1234
+    expect(Word).to receive(:delete).with(user_id, word)
+
+    delete "/w/#{word}", {}, 'rack.session' => { user_id: user_id }
+
+    expect(last_response.status).to eq(204)
+    expect(last_response.body).to be_empty
   end
 end
