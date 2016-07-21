@@ -11,4 +11,5 @@ group :development, :test do
   gem 'overcommit', '=0.25.0'
   gem 'rake'
   gem 'simplecov', require: false
+  gem 'coveralls', require: false
 end
