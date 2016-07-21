@@ -6,4 +6,4 @@ rvm:
 # https://lord.io/blog/2014/travis-multiple-subdirs/
 env:
   - TEST_DIR=examples/new-words/api
-script: cd $TEST_DIR && bundle && rake
+script: cd $TEST_DIR && bundle install --without development && rake
