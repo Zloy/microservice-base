@@ -2,7 +2,9 @@ describe 'Sinatra authentication subsystem' do
   it '/login sets user_id and returns success' do
     user = double('user')
     user_id = 1234
+    user_name = 'Alice'
     allow(user).to receive(:id).and_return(user_id)
+    allow(user).to receive(:name).and_return(user_name)
     body = 'right auth info'
     expect(User).to receive(:authenticate).with(body).and_return(user)
 
@@ -35,9 +37,11 @@ describe 'Sinatra authentication subsystem' do
 
   it '/whoami returns user name' do
     user = double('user')
+    user_id = 1234
     user_name = 'Alice'
+    allow(user).to receive(:id).and_return(user_id)
     allow(user).to receive(:name).and_return(user_name)
-    expect(User).to receive(:get).and_return(user)
+    expect(User).to receive(:new).and_return(user)
 
     user_id = 1234
     get '/whoami', {}, 'rack.session' => { user_id: user_id }

@@ -19,13 +19,14 @@ end
 before do
   next if ['/login', '/logout'].include? request.path_info
 
-  @user = session[:user_id] && User.get(session[:user_id])
+  @user = session[:user_id] && User.new(session[:user_id], session[:user_name])
 end
 
 post '/login' do
   user = User.authenticate(request.body.read)
   if user
     session[:user_id] = user.id
+    session[:user_name] = user.name
     status 200
   else
     status 401
@@ -33,7 +34,7 @@ post '/login' do
 end
 
 get '/logout' do
-  session[:user_id] = nil
+  session[:user_id] = session[:user_name] = @user = nil
   status 200
 end
 
