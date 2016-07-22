@@ -1,8 +1,7 @@
 language: ruby
 rvm:
   - 2.2
-  - 2.1
-  - 2.0
+  - 2.3
 # https://lord.io/blog/2014/travis-multiple-subdirs/
 env:
   - TEST_DIR=examples/new-words/api
