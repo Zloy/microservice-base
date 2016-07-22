@@ -7,6 +7,7 @@ group :development do
   gem 'overcommit', '=0.25.0'
   gem 'guard-rspec'
   gem 'guard-rubocop', '~>1.2'
+  gem 'byebug'
 end
 
 group :test do

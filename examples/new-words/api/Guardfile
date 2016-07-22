@@ -1,3 +1,5 @@
+require 'byebug'
+
 # This group allows to skip running RuboCop when RSpec failed.
 group :red_green_refactor, halt_on_fail: true do
   guard 'rspec', cmd: 'bundle exec rspec' do
@@ -7,7 +9,7 @@ group :red_green_refactor, halt_on_fail: true do
     watch('spec/spec_helper.rb') { 'spec/' }
   end
 
-  guard :rubocop, cmd: 'bundle exec rubocop' do
+  guard :rubocop, cli: ['--except', 'Lint/Debugger'] do
     watch(/.+\.rb$/)
     watch(%r{(?:.+/)?\.rubocop\.yml$}) { |m| File.dirname(m[0]) }
   end
