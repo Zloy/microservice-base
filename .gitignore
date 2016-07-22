@@ -37,5 +37,5 @@ build/
 Session.vim
 coverage
 .byebug_history
-*.swp
+*.sw*
 log/
