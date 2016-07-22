@@ -36,3 +36,4 @@ build/
 .rvmrc
 Session.vim
 coverage
+.byebug_history

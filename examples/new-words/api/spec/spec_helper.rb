@@ -1,6 +1,12 @@
 require 'simplecov'
 require 'coveralls'
 
+begin
+  require 'byebug'
+rescue LoadError
+  puts 'Failed loading byebug'
+end
+
 SimpleCov.formatter = SimpleCov::Formatter::MultiFormatter[
   SimpleCov::Formatter::HTMLFormatter,
   Coveralls::SimpleCov::Formatter
