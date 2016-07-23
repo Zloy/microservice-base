@@ -2,6 +2,9 @@ require 'sinatra'
 require File.expand_path 'load_paths.rb', File.dirname(__FILE__)
 require 'setup_logger'
 require 'login'
+require 'rack-request-id'
+
+use Rack::RequestId
 
 get '/status' do
   'ok'
