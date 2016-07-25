@@ -1,18 +1,19 @@
 require 'logger'
+require 'request_id_logger'
+require 'rack-request-id'
 
-::Logger.class_eval { alias_method :write, :<< }
+dir_name = File.dirname(File.expand_path(__FILE__))
 
-access_log = File.join(File.dirname(File.expand_path(__FILE__)),
-                       'log', 'access.log')
+access_log = File.join(dir_name, 'log', 'access.log')
+error_log = File.join(dir_name, 'log', 'error.log')
+
 access_logger = ::Logger.new(access_log)
-
-error_log = File.join(File.dirname(File.expand_path(__FILE__)),
-                      'log', 'error.log')
 error_logger = File.new(error_log, 'a+')
 error_logger.sync = true
 
 configure do
-  use Rack::CommonLogger, access_logger
+  use RequestIdLogger, access_logger
+  use Rack::RequestId
 end
 
 before do
