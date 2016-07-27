@@ -4,6 +4,7 @@
 
 **WP** = 1024 - average bytes per one word payload.
 
+## Stories
 
 ### POST /w/:word Add a word
 
@@ -27,13 +28,23 @@ Assume users learn all words, they added for a week in a week. That means users 
 The endpoint should maintain wps rate with the same peak value **lwps** = wps . Queueing applies, but the situation is better because there is no payload in such requests.
 
 
-### GET /w Get all words
+### GET /w Get all not learned words
 
 Users need their words in case they cleared browser storage, or they started using Teacher plugin in a new browser/machine.
 
-Assume it occurs on average at most after 1000 new word added. So the rate of getting all words is 1000 times less than word addition rate awps = wps / 1000 = 827 rps. Queueing is not applicable. The peak factor is the same 10. Big payload.
+Assume it occurs on average at most after 1000 new word added. So the rate of getting all words is 1000 times less than word addition rate awps = wps / 1000 = 827 rps. Queueing is not applicable. The peak factor is the same 10.
+Assume average user holds about 50 words to learn. Thus mean payload would be 50 * 1Kb = 50 Kb rep request, or 827 * 50 = 41 Mb/s
 
 
 ### DELETE /w/:word Delete mistakenly added word
 
 Users make mistakes klicking on wrong words, which either they already know, or they just want to copy for whatever reason. Users want to delete such words. Assume they click one wrong word every 20 clicks on right words. Thus, wrong word rate is **wwps** = wps / 20 = 413 wps. Queueing is applicable, also no payload.
+
+## Table
+
+| endpoint | rps mean | rps max | payload mean Mb/s | payload max Mb/s | queueing |
+|----------|----------|---------|-------------------|------------------|----------|
+|`POST /w/:word`|8_267|82_670|8|80|yes|
+|`PUT /w/:word/learned`|8_267|82_670|0|0|yes|
+|`GET /w`|827|8_267|42|420|no|
+|`DELETE /w/:word`|413|4130|0|0|yes|
