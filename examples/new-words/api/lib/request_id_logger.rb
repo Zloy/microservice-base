@@ -12,7 +12,7 @@ class RequestIdLogger < Rack::CommonLogger
 
     msg = get_msg(env, status, headers, began_at, end_at)
 
-    send_to_logger(logger, msg)
+    logger << msg
   end
 
   # rubocop:disable Metrcis/MethodLength
@@ -49,14 +49,6 @@ class RequestIdLogger < Rack::CommonLogger
 
   def request_id(headers)
     headers[X_REQUEST_ID]
-  end
-
-  def send_to_logger(logger, msg)
-    if logger.respond_to?(:write)
-      logger.write(msg)
-    else
-      logger << msg
-    end
   end
 
   def logger
