@@ -1,41 +1,44 @@
 require 'sinatra'
 require 'sinatra-initializers'
 require File.expand_path 'load_paths.rb', File.dirname(__FILE__)
-require 'setup_logger'
-require 'login'
 
-register Sinatra::Initializers
+class App < Sinatra::Application
+  require 'setup_logger'
+  require 'login'
 
-get '/status' do
-  'ok'
-end
+  register Sinatra::Initializers
 
-get '/w', auth: :user do
-  content_type 'application/json'
+  get '/status' do
+    'ok'
+  end
 
-  Word.all(session[:user_id]).to_json
-end
+  get '/w', auth: :user do
+    content_type 'application/json'
 
-post '/w/:word', auth: :user do
-  request.body.rewind
-  payload = request.body.read
+    Word.all(session[:user_id]).to_json
+  end
 
-  content_type 'application/json'
-  status 201
+  post '/w/:word', auth: :user do
+    request.body.rewind
+    payload = request.body.read
 
-  Word.insert_or_update(session[:user_id], params[:word], payload).to_json
-end
+    content_type 'application/json'
+    status 201
 
-put '/w/:word/learned', auth: :user do
-  status 204
-  body nil
+    Word.insert_or_update(session[:user_id], params[:word], payload).to_json
+  end
 
-  Word.learned(session[:user_id], params[:word])
-end
+  put '/w/:word/learned', auth: :user do
+    status 204
+    body nil
 
-delete '/w/:word', auth: :user do
-  status 204
-  body nil
+    Word.learned(session[:user_id], params[:word])
+  end
 
-  Word.delete(session[:user_id], params[:word])
+  delete '/w/:word', auth: :user do
+    status 204
+    body nil
+
+    Word.delete(session[:user_id], params[:word])
+  end
 end

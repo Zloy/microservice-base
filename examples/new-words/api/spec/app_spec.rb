@@ -1,6 +1,7 @@
+require 'app'
 require 'word'
 
-describe 'My Sinatra Application' do
+describe App do
   it 'GET /status renders ok' do
     get '/status'
     expect(last_response).to be_ok

@@ -29,7 +29,7 @@ module RSpecMixin
   include Rack::Test::Methods
 
   def app
-    Sinatra::Application
+    App
   end
 end
 
