@@ -1,4 +1,6 @@
-class Word
+require 'ostruct'
+
+module Word
   def self.all(user_id)
     if user_id == 1234
       { some: :data }
@@ -14,5 +16,13 @@ class Word
   end
 
   def self.delete(_user_id, _word)
+  end
+
+  def self.config
+    @config ||= OpenStruct.new
+  end
+
+  def self.configure
+    yield(config)
   end
 end
