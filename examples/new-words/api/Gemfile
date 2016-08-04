@@ -5,6 +5,8 @@ gem 'rake'
 gem 'rack-request-id'
 gem 'sinatra-initializers'
 gem 'puma'
+gem 'bunny', '>=2.2.2' # RabbitMQ
+gem 'connection_pool'
 
 group :development do
   gem 'overcommit', '=0.25.0'
