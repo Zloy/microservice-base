@@ -3,6 +3,7 @@ source 'https://rubygems.org'
 gem 'sinatra', '~>1'
 gem 'rake'
 gem 'rack-request-id'
+gem 'puma'
 
 group :development do
   gem 'overcommit', '=0.25.0'
