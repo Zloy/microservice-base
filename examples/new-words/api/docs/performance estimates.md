@@ -48,3 +48,19 @@ Users make mistakes klicking on wrong words, which either they already know, or 
 |`PUT /w/:word/learned`|8_267|82_670|0|0|yes|
 |`GET /w`|827|8_267|42|420|no|
 |`DELETE /w/:word`|413|4130|0|0|yes|
+
+Instead of synchronous `GET /w` I might introduce async endpoint:
+
+* `POST /j/w/learned` to create a search job for getting all learned words which returns a :job_id to poll it later on
+* `GET /j/:job_id` to poll the search job result
+
+That redesign allows to use background workers to perform all work leaving API the role of a dumb http connector.
+
+Dividing connector and data processing functionality between respectively API and workers simplifies complex data storage implementation including dynamic sharding, putting non accessing data to separate DBs and servers, etc.
+
+Assuming there would be 2 polls on average for one job posted:
+
+| endpoint | rps mean | rps max | payload mean Mb/s | payload max Mb/s | queueing |
+|----------|----------|---------|-------------------|------------------|----------|
+|`POST /j/w/learned` |    827|    8_267| 0|  0|yes|
+|`GET /j/:job_id`    |2 * 827|2 * 8_267|42|420| no|

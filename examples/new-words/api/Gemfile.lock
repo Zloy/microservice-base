@@ -60,6 +60,7 @@ GEM
       coderay (~> 1.1.0)
       method_source (~> 0.8.1)
       slop (~> 3.4)
+    puma (3.4.0)
     rack (1.6.4)
     rack-protection (1.5.3)
       rack
@@ -128,6 +129,7 @@ DEPENDENCIES
   guard-rspec
   guard-rubocop (~> 1.2)
   overcommit (= 0.25.0)
+  puma
   rack-request-id
   rack-test
   rake
