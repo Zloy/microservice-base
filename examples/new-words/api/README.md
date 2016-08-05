@@ -11,6 +11,8 @@ clone repo
 
 `cd microservice-base/examples/new-words/api`
 
+`sudo apt-get install -y rabbitmq-server`
+
 `bundle exec rake` to test
 
 `bundle exec rackup` to start API server
