@@ -21,7 +21,10 @@ class Word
     send(word)
   end
 
-  def self.delete(_user_id, _word)
+  def self.delete(user_id, word)
+    word = new(type: :delete, user_id: user_id, word: word)
+
+    send(word)
   end
 
   # rubocop:disable Style/TrivialAccessors
