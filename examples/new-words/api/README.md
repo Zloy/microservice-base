@@ -11,13 +11,17 @@ clone repo
 
 `cd microservice-base/examples/new-words/api`
 
+`screen -c .screenrc` to open predefined screen tabs for development
+
 `sudo apt-get install -y rabbitmq-server`
 
 `bundle`
 
 `bundle exec rake` to test
 
-`bundle exec rackup` to start API server
+`bundle exec rackup` to run
+
+`bundle exec rerun 'bundle exec rackup'` to run app with hot reloading
 
 ## Development checklist
 
