@@ -20,7 +20,7 @@ select 3
 stuff "bundle exec guard^M"
 
 select 4
-stuff "gits && eval `ssh-agent -s` && ssh-add ~/.ssh/id_github^M"
+stuff "git status && eval `ssh-agent -s` && ssh-add ~/.ssh/id_github^M"
 
 select 5
 stuff "bundle exec rerun 'bundle exec rackup'^M"
