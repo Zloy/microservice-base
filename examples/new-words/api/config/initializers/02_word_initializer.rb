@@ -4,7 +4,8 @@ require 'connection_pool'
 require 'word'
 
 Word.configure do |config|
-  config.pool = ConnectionPool.new(size: 5, timout: 5) do
-    Bunny.new.tap(:start)
-  end
+  # config.host = :localhost
+  # config.port = 5672
+  # config.pool_size = 5
+  # config.pool_timeout = 5 # seconds
 end
