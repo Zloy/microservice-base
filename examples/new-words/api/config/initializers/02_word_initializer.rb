@@ -1,11 +1,13 @@
-require 'bunny'
-require 'connection_pool'
-
+require 'bunny_pool'
 require 'word'
 
-Word.configure do |config|
+bunny_pool = BunnyPool.new.configure do |config|
+  # defaults:
   # config.host = :localhost
   # config.port = 5672
   # config.pool_size = 5
   # config.pool_timeout = 5 # seconds
+  config.queue = 'words jobs'
 end
+
+Word.send_lambda = bunny_pool.send_lambda
