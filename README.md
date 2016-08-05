@@ -1,5 +1,6 @@
 # microservice-base
-This contains my experiments and thoughts of microservices
+This contains my experiments and thoughts of microservices.
+There are [wiki](https://github.com/Zloy/microservice-base/wiki) and example [new-words project](https://github.com/Zloy/microservice-base/tree/master/examples/new-words)
 
 ## What to consider when I build a microservice?
 Here are the list of aspects from scratch
