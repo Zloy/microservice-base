@@ -2,11 +2,9 @@ class Word
   WORD_VALIDATION_REGEXP = /\A[a-z]+\Z/i
 
   def self.all(user_id)
-    if user_id == 1234
-      { some: :data }
-    else
-      {}
-    end
+    word = new(type: :all, user_id: user_id)
+
+    send(word)
   end
 
   def self.insert_or_update(user_id, word, payload)
@@ -36,6 +34,8 @@ class Word
     word_str = serialize(word.to_h)
 
     @send_lambda.call(word_str)
+
+    nil
   end
 
   def self.serialize_lambda=(serialize_lambda)
@@ -51,7 +51,7 @@ class Word
     WORD_VALIDATION_REGEXP =~ word
   end
 
-  def initialize(type:, user_id:, word:, payload: nil) # Ruby 2.1. named params!
+  def initialize(type:, user_id:, word: nil, payload: nil)
     @type = type
     @user_id = user_id
     @word = word
