@@ -15,7 +15,10 @@ class Word
     send(word)
   end
 
-  def self.learned(_user_id, _word)
+  def self.learned(user_id, word)
+    word = new(type: :learned, user_id: user_id, word: word)
+
+    send(word)
   end
 
   def self.delete(_user_id, _word)
@@ -45,7 +48,7 @@ class Word
     WORD_VALIDATION_REGEXP =~ word
   end
 
-  def initialize(type:, user_id:, word:, payload:) # Ruby 2.1. named parameters!
+  def initialize(type:, user_id:, word:, payload: nil) # Ruby 2.1. named params!
     @type = type
     @user_id = user_id
     @word = word
