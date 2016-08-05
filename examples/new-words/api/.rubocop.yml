@@ -1,6 +1,7 @@
 Rails:
   Enabled: false
 AllCops:
+  TargetRubyVersion: 2.1
   Exclude:
     - db/schema.rb
     - db/seeds.rb

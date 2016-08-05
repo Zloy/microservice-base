@@ -39,4 +39,15 @@ class Word
   def self.valid?(word)
     WORD_VALIDATION_REGEXP =~ word
   end
+
+  def initialize(type:, user_id:, word:, payload:) # Ruby 2.1. named parameters!
+    @type = type
+    @user_id = user_id
+    @word = word
+    @payload = payload
+  end
+
+  def to_h
+    { type: @type, user_id: @user_id, word: @word, payload: @payload }
+  end
 end
