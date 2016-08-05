@@ -11,15 +11,23 @@ clone repo
 
 `cd microservice-base/examples/new-words/api`
 
+`screen -c .screenrc` to open predefined screen tabs for development
+
+`sudo apt-get install -y rabbitmq-server`
+
+`bundle`
+
 `bundle exec rake` to test
 
-`bundle exec rackup` to start API server
+`bundle exec rackup` to run
+
+`bundle exec rerun 'bundle exec rackup'` to run app with hot reloading
 
 ## Development checklist
 
 ### Architecture
 - [ ] Microservice purpose
-- [ ] Microservice performance requirements
+- [X] [Microservice performance requirements](https://github.com/Zloy/microservice-base/blob/master/examples/new-words/api/docs/performance%20estimates.md)
 - [X] Web framework - **Sinatra**
 - [ ] Horizontal scalability approach
 - [ ] Load balancer
