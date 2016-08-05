@@ -51,14 +51,16 @@ class Word
     WORD_VALIDATION_REGEXP =~ word
   end
 
-  def initialize(type:, user_id:, word: nil, payload: nil)
+  def initialize(type:, user_id:, word: nil, payload: nil, job_id: nil)
     @type = type
     @user_id = user_id
     @word = word
     @payload = payload
+    @job_id = job_id
   end
 
   def to_h
-    { type: @type, user_id: @user_id, word: @word, payload: @payload }
+    { type: @type, user_id: @user_id, word: @word, payload: @payload,
+      job_id: @job_id }
   end
 end
