@@ -26,6 +26,14 @@ module Word
     @send_lambda.call(str)
   end
 
+  def self.serialize_lambda=(serialize_lambda)
+    @serialize_lambda = serialize_lambda
+  end
+
+  def self.serialize(obj)
+    @serialize_lambda.call(obj)
+  end
+
   def self.valid?(word)
     WORD_VALIDATION_REGEXP =~ word
   end

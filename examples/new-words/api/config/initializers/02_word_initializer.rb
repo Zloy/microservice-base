@@ -1,5 +1,6 @@
 require 'bunny_pool'
 require 'word'
+require 'json'
 
 bunny_pool = BunnyPool.new.configure do |config|
   # defaults:
@@ -11,3 +12,5 @@ bunny_pool = BunnyPool.new.configure do |config|
 end
 
 Word.send_lambda = bunny_pool.send_lambda
+
+Word.serialize_lambda = -> (obj) { JSON.generate(obj) }
