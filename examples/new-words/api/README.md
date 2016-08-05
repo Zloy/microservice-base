@@ -19,7 +19,7 @@ clone repo
 
 ### Architecture
 - [ ] Microservice purpose
-- [ ] Microservice performance requirements
+- [X] [Microservice performance requirements](https://github.com/Zloy/microservice-base/blob/master/examples/new-words/api/docs/performance%20estimates.md)
 - [X] Web framework - **Sinatra**
 - [ ] Horizontal scalability approach
 - [ ] Load balancer
