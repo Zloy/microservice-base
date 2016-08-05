@@ -1,4 +1,4 @@
-module Word
+class Word
   WORD_VALIDATION_REGEXP = /\A[a-z]+\Z/i
 
   def self.all(user_id)
@@ -18,6 +18,7 @@ module Word
   def self.delete(_user_id, _word)
   end
 
+  # rubocop:disable Style/TrivialAccessors
   def self.send_lambda=(send_lambda)
     @send_lambda = send_lambda
   end
@@ -29,6 +30,7 @@ module Word
   def self.serialize_lambda=(serialize_lambda)
     @serialize_lambda = serialize_lambda
   end
+  # rubocop:enable Style/TrivialAccessors
 
   def self.serialize(obj)
     @serialize_lambda.call(obj)
