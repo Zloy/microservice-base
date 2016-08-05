@@ -12,9 +12,7 @@ class Word
   def self.insert_or_update(user_id, word, payload)
     word = new(type: :add, user_id: user_id, word: word, payload: payload)
 
-    word_str = serialize(word.to_h)
-
-    send(word_str)
+    send(word)
   end
 
   def self.learned(_user_id, _word)
@@ -28,8 +26,10 @@ class Word
     @send_lambda = send_lambda
   end
 
-  def self.send(str)
-    @send_lambda.call(str)
+  def self.send(word)
+    word_str = serialize(word.to_h)
+
+    @send_lambda.call(word_str)
   end
 
   def self.serialize_lambda=(serialize_lambda)
