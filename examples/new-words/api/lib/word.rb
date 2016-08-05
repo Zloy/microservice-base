@@ -1,10 +1,12 @@
 class Word
   WORD_VALIDATION_REGEXP = /\A[a-z]+\Z/i
 
-  def self.all(user_id)
-    word = new(type: :all, user_id: user_id)
+  def self.all(user_id, job_id)
+    word = new(type: :all, user_id: user_id, job_id: job_id)
 
     send(word)
+
+    { job_id: job_id }
   end
 
   def self.insert_or_update(user_id, word, payload)

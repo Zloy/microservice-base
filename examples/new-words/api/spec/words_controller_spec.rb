@@ -25,7 +25,7 @@ describe App do
   it 'GET /w renders what Word.all(user_id) returns in json form' do
     user_id = 1234
     word_data = { key: :val, yet: :another }
-    expect(Word).to receive(:all).with(user_id).and_return(word_data)
+    expect(Word).to receive(:all).with(user_id, anything).and_return(word_data)
 
     get '/w', {}, 'rack.session' => { user_id: user_id }
 
