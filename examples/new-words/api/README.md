@@ -13,6 +13,8 @@ clone repo
 
 `sudo apt-get install -y rabbitmq-server`
 
+`bundle`
+
 `bundle exec rake` to test
 
 `bundle exec rackup` to start API server
