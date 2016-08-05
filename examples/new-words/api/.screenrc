@@ -1,5 +1,7 @@
 source /home/zhan/.screenrc
 
+bundle
+
 screen -t 'htop'  0
 screen -t 'bash'  1
 screen -t 'vim'   2
