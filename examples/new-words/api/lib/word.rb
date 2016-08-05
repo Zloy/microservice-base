@@ -9,7 +9,12 @@ class Word
     end
   end
 
-  def self.insert_or_update(_user_id, _word, _payload)
+  def self.insert_or_update(user_id, word, payload)
+    word = new(type: :add, user_id: user_id, word: word, payload: payload)
+
+    word_str = serialize(word.to_h)
+
+    send(word_str)
   end
 
   def self.learned(_user_id, _word)
