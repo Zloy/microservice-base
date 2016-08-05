@@ -93,4 +93,31 @@ describe App do
     expect(last_response.status).to eq(204)
     expect(last_response.body).to be_empty
   end
+
+  # params[:word] validation testing
+  user_id = 1234
+  bad_words = ['1', '$', 'a_', 'a-', 'a+']
+
+  bad_words.each do |word|
+    it "DELETE /w/#{word} renders 422" do
+      delete "/w/#{word}", {}, 'rack.session' => { user_id: user_id }
+
+      expect(last_response.status).to eq(422)
+      expect(last_response.body).to be_empty
+    end
+
+    it "PUT /w/#{word}/learned renders 422" do
+      put "/w/#{word}/learned", {}, 'rack.session' => { user_id: user_id }
+
+      expect(last_response.status).to eq(422)
+      expect(last_response.body).to be_empty
+    end
+
+    it "POST /w/#{word} renders 422" do
+      post "/w/#{word}", 'payload here!', 'rack.session' => { user_id: user_id }
+
+      expect(last_response.status).to eq(422)
+      expect(last_response.body).to be_empty
+    end
+  end
 end
