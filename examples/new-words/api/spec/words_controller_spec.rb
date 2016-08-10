@@ -4,6 +4,8 @@ require 'word_job'
 describe App do
   it 'GET /w renders 200 OK for authenticated user' do
     user_id = 1234
+    expect(WordJob).to receive(:all)
+
     get '/w', {}, 'rack.session' => { user_id: user_id }
 
     expect(last_response).to be_ok
@@ -17,6 +19,8 @@ describe App do
 
   it 'GET /w renders application/json content type' do
     user_id = 1234
+    expect(WordJob).to receive(:all)
+
     get '/w', {}, 'rack.session' => { user_id: user_id }
 
     expect(last_response.headers['Content-Type']).to eq('application/json')
@@ -41,6 +45,8 @@ describe App do
 
   it 'POST /w/:word renders application/json content type' do
     user_id = 1234
+    expect(WordJob).to receive(:insert_or_update)
+
     post '/w/hero', 'payload here!', 'rack.session' => { user_id: user_id }
 
     expect(last_response.headers['Content-Type']).to eq('application/json')
