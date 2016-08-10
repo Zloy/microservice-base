@@ -9,20 +9,21 @@ class WordJob
     { job_id: job_id }
   end
 
-  def self.insert_or_update(user_id, word, payload)
-    word = new(type: :add, user_id: user_id, word: word, payload: payload)
+  def self.insert_or_update(user_id, word, payload, job_id)
+    word = new(type: :add, user_id: user_id, word: word, payload: payload,
+               job_id: job_id)
 
     send(word)
   end
 
-  def self.learned(user_id, word)
-    word = new(type: :learned, user_id: user_id, word: word)
+  def self.learned(user_id, word, job_id)
+    word = new(type: :learned, user_id: user_id, word: word, job_id: job_id)
 
     send(word)
   end
 
-  def self.delete(user_id, word)
-    word = new(type: :delete, user_id: user_id, word: word)
+  def self.delete(user_id, word, job_id)
+    word = new(type: :delete, user_id: user_id, word: word, job_id: job_id)
 
     send(word)
   end

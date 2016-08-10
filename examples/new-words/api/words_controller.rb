@@ -21,23 +21,29 @@ end
 post '/w/:word', auth: :user, validate: :word do
   request.body.rewind
   payload = request.body.read
+  job_id = Thread.current[:request_id] # X-Request-Id
 
   content_type 'application/json'
   status 201
 
-  WordJob.insert_or_update(session[:user_id], params[:word], payload).to_json
+  WordJob.insert_or_update(session[:user_id], params[:word], payload,
+                           job_id).to_json
 end
 
 put '/w/:word/learned', auth: :user, validate: :word do
   status 204
   body nil
 
-  WordJob.learned(session[:user_id], params[:word])
+  job_id = Thread.current[:request_id] # X-Request-Id
+
+  WordJob.learned(session[:user_id], params[:word], job_id)
 end
 
 delete '/w/:word', auth: :user, validate: :word do
   status 204
   body nil
 
-  WordJob.delete(session[:user_id], params[:word])
+  job_id = Thread.current[:request_id] # X-Request-Id
+
+  WordJob.delete(session[:user_id], params[:word], job_id)
 end

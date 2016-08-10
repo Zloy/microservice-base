@@ -52,7 +52,8 @@ describe App do
     payload = 'payload here!'
     word_data = { word => payload }
     user_id = 1234
-    expect(WordJob).to receive(:insert_or_update).with(user_id, word, payload)
+    expect(WordJob).to receive(:insert_or_update)
+      .with(user_id, word, payload, anything)
       .and_return(word_data)
 
     post '/w/hero', payload, 'rack.session' => { user_id: user_id }
@@ -69,7 +70,7 @@ describe App do
   it 'PUT /w/:word/learned renders 204 and calls WordJob.learned' do
     word = 'hero'
     user_id = 1234
-    expect(WordJob).to receive(:learned).with(user_id, word)
+    expect(WordJob).to receive(:learned).with(user_id, word, anything)
 
     put "/w/#{word}/learned", {}, 'rack.session' => { user_id: user_id }
 
@@ -87,7 +88,7 @@ describe App do
   it 'DELETE /w/:word renders 204 and calls WordJob.learned' do
     word = 'hero'
     user_id = 1234
-    expect(WordJob).to receive(:delete).with(user_id, word)
+    expect(WordJob).to receive(:delete).with(user_id, word, anything)
 
     delete "/w/#{word}", {}, 'rack.session' => { user_id: user_id }
 
