@@ -6,8 +6,8 @@ rvm:
 env:
   - TEST_DIR=examples/new-words/api
 script: cd $TEST_DIR && bundle install --without development && rake
-before_install:
-  - sudo apt-get install -y rabbitmq-server
-services:
-  - rabbitmq
-sudo: required
+# before_install:
+#   - sudo apt-get install -y rabbitmq-server
+# services:
+#   - rabbitmq
+# sudo: required
