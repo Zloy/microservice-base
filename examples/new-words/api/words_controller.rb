@@ -8,12 +8,14 @@ helpers do
   def word_valid?
     WordJob.valid?(params[:word])
   end
+
+  def job_id
+    Thread.current[:request_id] # X-Request-Id
+  end
 end
 
 get '/w', auth: :user do
   content_type 'application/json'
-
-  job_id = Thread.current[:request_id] # X-Request-Id
 
   WordJob.all(session[:user_id], job_id).to_json
 end
@@ -21,7 +23,6 @@ end
 post '/w/:word', auth: :user, validate: :word do
   request.body.rewind
   payload = request.body.read
-  job_id = Thread.current[:request_id] # X-Request-Id
 
   content_type 'application/json'
   status 201
@@ -34,16 +35,12 @@ put '/w/:word/learned', auth: :user, validate: :word do
   status 204
   body nil
 
-  job_id = Thread.current[:request_id] # X-Request-Id
-
   WordJob.learned(session[:user_id], params[:word], job_id)
 end
 
 delete '/w/:word', auth: :user, validate: :word do
   status 204
   body nil
-
-  job_id = Thread.current[:request_id] # X-Request-Id
 
   WordJob.delete(session[:user_id], params[:word], job_id)
 end
