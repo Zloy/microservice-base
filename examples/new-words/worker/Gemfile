@@ -1,0 +1,19 @@
+source 'https://rubygems.org'
+
+gem 'rake'
+gem 'bunny', '>=2.2.2' # RabbitMQ
+
+group :development do
+  gem 'overcommit', '=0.25.0'
+  gem 'guard-rspec'
+  gem 'guard-rubocop', '~>1.2'
+  gem 'byebug'
+  gem 'rerun'
+end
+
+group :test do
+  gem 'rubocop', '~>0.30', require: false
+  gem 'rspec', '~>3'
+  gem 'simplecov', require: false
+  gem 'coveralls', require: false
+end

@@ -1,0 +1,14 @@
+Rails:
+  Enabled: false
+AllCops:
+  TargetRubyVersion: 2.1
+  Exclude:
+    - db/schema.rb
+    - db/seeds.rb
+    - db/migrate/*.rb
+    - bin/**/*
+    - vendor/bundle/**/*
+Style/Documentation:
+  Enabled: false
+Metrics/AbcSize:
+  Max: 16
