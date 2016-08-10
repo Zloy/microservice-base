@@ -7,6 +7,18 @@ group :red_green_refactor, halt_on_fail: true do
     watch(%r{^lib\/(.+)\.rb$}) { |m| "spec/#{m[1]}_spec.rb" }
     watch(/^(.+)\.rb$/) { |m| "spec/#{m[1]}_spec.rb" }
     watch('spec/spec_helper.rb') { 'spec/' }
+
+    [
+      { 'app.rb' => ['spec/login_controller_spec.rb',
+                     'spec/words_controller_spec.rb'] },
+      { 'lib/word_job.rb' => ['spec/words_controller_spec.rb'] }
+    ].each do |rule|
+      file = rule.keys.first
+
+      rule[file].each do |spec|
+        watch(file) { spec }
+      end
+    end
   end
 
   guard :rubocop, cli: ['--except', 'Lint/Debugger'] do
