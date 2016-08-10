@@ -1,5 +1,5 @@
 require 'bunny_pool'
-require 'word'
+require 'word_job'
 require 'json'
 
 bunny_pool = BunnyPool.new.configure do |config|
@@ -11,6 +11,6 @@ bunny_pool = BunnyPool.new.configure do |config|
   config.queue = 'words jobs'
 end
 
-Word.send_lambda = bunny_pool.send_lambda
+WordJob.send_lambda = bunny_pool.send_lambda
 
-Word.serialize_lambda = -> (obj) { JSON.generate(obj) }
+WordJob.serialize_lambda = -> (obj) { JSON.generate(obj) }

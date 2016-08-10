@@ -1,4 +1,4 @@
-class Word
+class WordJob
   WORD_VALIDATION_REGEXP = /\A[a-z]+\Z/i
 
   def self.all(user_id, job_id)
