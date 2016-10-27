@@ -28,24 +28,24 @@ clone repo
 ### Architecture
 - [ ] Purpose
 - [ ] Performance requirements
-- [-] Web framework
+- [x] Web framework - n/a
 - [ ] Horizontal scalability approach
 - [ ] Load balancer
 - [ ] Service autodiscovery
-- [-] Frontend architecture
+- [x] Frontend architecture - n/a
 - [ ] Backend architecture
 - [ ] Logs collection, parsing, storing, visualizing
 
 ### Development
 - [X] Test framework, fake data, mocking - **Rspec**
-- [-] Versioning API
+- [x] Versioning API - n/a
 - [ ] SQL DB, ORM and migrations
-- [-] Logging on frontend
+- [x] Logging on frontend - n/a
 - [ ] Logging on backend
 - [ ] Logging with X-Request-Id
-- [X] Queue - **RabbitMQ**
+- [x] Queue - **RabbitMQ**
 - [ ] Background jobs
-- [-] REST client
+- [x] REST client - n/a
 - [ ] Caching
 - [X] Code coverage metrics - **SimpleCov**, **Coveralls.io**
 - [X] Linters - **Rbocop**
