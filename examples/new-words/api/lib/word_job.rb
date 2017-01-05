@@ -1,8 +1,10 @@
 class WordJob
   WORD_VALIDATION_REGEXP = /\A[a-z]+\Z/i
 
-  def self.all(user_id, job_id)
-    word = new(type: :all, user_id: user_id, job_id: job_id)
+  def self.all(user_id, job_id, datetime_after)
+    hash = { type: :all, user_id: user_id, job_id: job_id,
+             datetime_after: datetime_after }
+    word = new hash
 
     send(word)
 
@@ -10,20 +12,23 @@ class WordJob
   end
 
   def self.insert_or_update(user_id, word, payload, job_id)
-    word = new(type: :add, user_id: user_id, word: word, payload: payload,
-               job_id: job_id)
+    hash = { type: :add, user_id: user_id, word: word, payload: payload,
+             job_id: job_id }
+    word = new hash
 
     send(word)
   end
 
   def self.learned(user_id, word, job_id)
-    word = new(type: :learned, user_id: user_id, word: word, job_id: job_id)
+    hash = { type: :learned, user_id: user_id, word: word, job_id: job_id }
+    word = new hash
 
     send(word)
   end
 
   def self.delete(user_id, word, job_id)
-    word = new(type: :delete, user_id: user_id, word: word, job_id: job_id)
+    hash = { type: :delete, user_id: user_id, word: word, job_id: job_id }
+    word = new hash
 
     send(word)
   end
@@ -54,16 +59,17 @@ class WordJob
     WORD_VALIDATION_REGEXP =~ word
   end
 
-  def initialize(type:, user_id:, word: nil, payload: nil, job_id: nil)
-    @type = type
-    @user_id = user_id
-    @word = word
-    @payload = payload
-    @job_id = job_id
+  def initialize(hash)
+    @type = hash[:type]
+    @user_id = hash[:user_id]
+    @datetime_after = hash[:datetime_after]
+    @word = hash[:word]
+    @payload = hash[:payload]
+    @job_id = hash[:job_id]
   end
 
   def to_h
     { type: @type, user_id: @user_id, word: @word, payload: @payload,
-      job_id: @job_id }
+      datetime_after: @datetime_after, job_id: @job_id }
   end
 end

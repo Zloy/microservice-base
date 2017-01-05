@@ -30,11 +30,20 @@ describe App do
     user_id = 1234
     word_data = { key: :val, yet: :another }
     expect(WordJob).to receive(:all)
-      .with(user_id, anything).and_return(word_data)
+      .with(user_id, anything, anything).and_return(word_data)
 
     get '/w', {}, 'rack.session' => { user_id: user_id }
 
     expect(last_response.body).to eq(word_data.to_json)
+  end
+
+  it 'GET /w?datetime_after=X renders 200 OK for authenticated user' do
+    user_id = 1234
+    expect(WordJob).to receive(:all).with(user_id, anything, 'X')
+
+    get '/w', { datetime_after: 'X' }, 'rack.session' => { user_id: user_id }
+
+    expect(last_response).to be_ok
   end
 
   it 'POST /w/:word renders 404 for anonymous user' do

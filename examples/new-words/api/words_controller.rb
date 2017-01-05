@@ -1,3 +1,5 @@
+require 'date'
+
 register do
   def validate(type)
     condition { halt 422 unless send("#{type}_valid?") }
@@ -15,9 +17,12 @@ helpers do
 end
 
 get '/w', auth: :user do
+  datetime_after = params[:datetime_after] ||
+                   DateTime.new(2016, 12, 5, 21, 40, 0).iso8601 # I've written
+
   content_type 'application/json'
 
-  WordJob.all(session[:user_id], job_id).to_json
+  WordJob.all(session[:user_id], job_id, datetime_after).to_json
 end
 
 post '/w/:word', auth: :user, validate: :word do
