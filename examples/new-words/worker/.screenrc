@@ -9,6 +9,7 @@ screen -t 'vim'   2
 screen -t 'guard' 3
 screen -t 'git'   4
 screen -t 'app'   5
+screen -t 'ranger' 6
 
 select 0
 stuff "echo 'shell commands here'^M"
@@ -27,3 +28,6 @@ stuff "git status && eval `ssh-agent -s` && ssh-add ~/.ssh/id_github^M"
 
 select 5
 stuff "bundle exec rerun 'bundle exec ./app.rb'^M"
+
+select 6
+stuff "ranger^M"
