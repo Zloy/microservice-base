@@ -1,3 +1,4 @@
+#!/usr/bin/env ruby
 require 'sinatra'
 require 'sinatra-initializers'
 require File.expand_path 'load_paths.rb', File.dirname(__FILE__)
